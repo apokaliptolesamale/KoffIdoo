@@ -1,0 +1,72 @@
+import 'dart:convert';
+
+import 'package:xml/xml.dart';
+
+import '../../../../../app/core/interfaces/entity_model.dart';
+
+Fault faultFromJson(String str) => Fault.fromJson(json.decode(str));
+String faultToJson(Fault data) => json.encode(data.toJson());
+
+class Fault {
+  final int? faultCode;
+  final String type;
+  final String message;
+  final String description;
+
+  Fault({
+    required this.faultCode,
+    required this.type,
+    required this.message,
+    required this.description,
+  });
+
+  factory Fault.fromJson(Map<String, dynamic> json) => Fault(
+        faultCode: EntityModel.getValueFromJson<int>(
+          "code",
+          json,
+          0,
+          reader: (key, json, dv) {
+            if (json.containsKey(key) && json[key] != null) {
+              return json[key] is String ? int.parse(json[key]) : json[key];
+            } else {
+              return dv;
+            }
+          },
+        ), // json["code"].toString(),
+
+        type: EntityModel.getValueFromJson<String>(
+          "type",
+          json,
+          "",
+        ),
+        message: EntityModel.getValueFromJson<String>(
+          "message",
+          json,
+          "",
+        ),
+        description: EntityModel.getValueFromJson<String>(
+          "description",
+          json,
+          "",
+        ),
+      );
+  factory Fault.fromXml(
+          XmlElement element, Fault Function(XmlElement el) process) =>
+      process(element);
+
+  factory Fault.loadFromXml(XmlElement element) => Fault.fromXml(element, (el) {
+        return Fault(
+          faultCode: int.tryParse(el.getElement("am:code")!.text),
+          message: el.getElement("am:message")!.text,
+          type: el.getElement("am:type")!.text,
+          description: el.getElement("am:description")!.text,
+        );
+      });
+
+  Map<String, dynamic> toJson() => {
+        "code": faultCode,
+        "type": type,
+        "message": message,
+        "description": description,
+      };
+}

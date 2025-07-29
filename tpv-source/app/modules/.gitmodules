@@ -1,0 +1,27 @@
+[submodule "product"]
+	path = product
+	url = https://gitlab.xutil.cu/xetid/ub-ecodig/tecnologia-bancaria/frontend/product.git
+[submodule "qrcode"]
+	path = qrcode
+	url = https://gitlab.xutil.cu/xetid/ub-ecodig/tecnologia-bancaria/frontend/qrcode.git
+[submodule "card"]
+	path = card
+	url = https://gitlab.xutil.cu/xetid/ub-ecodig/tecnologia-bancaria/frontend/card.git
+[submodule "transaction"]
+	path = transaction
+	url = https://gitlab.xutil.cu/xetid/ub-ecodig/tecnologia-bancaria/frontend/transaction.git
+[submodule "tpv"]
+	path = tpv
+	url = https://gitlab.xutil.cu/xetid/ub-ecodig/tecnologia-bancaria/frontend/tpv.git
+[submodule "warranty"]
+	path = warranty
+	url = https://gitlab.xutil.cu/xetid/ub-ecodig/tecnologia-bancaria/frontend/warranty.git
+[submodule "prestashop"]
+	path = prestashop
+	url = https://gitlab.xutil.cu/xetid/ub-ecodig/tecnologia-bancaria/frontend/prestashop.git
+[submodule "order"]
+	path = order
+	url = https://gitlab.xutil.cu/xetid/ub-ecodig/tecnologia-bancaria/frontend/order.git
+[submodule "administration"]
+	path = order
+	url = https://gitlab.xutil.cu/xetid/ub-ecodig/tecnologia-bancaria/frontend/administration.git

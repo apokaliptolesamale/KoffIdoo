@@ -1,0 +1,230 @@
+// To parse this JSON data, do
+//
+//     final userModel = userModelFromJson(jsonString);
+// ignore_for_file: overridden_fields, empty_catches, override_on_non_overriding_member
+import 'dart:async';
+import 'dart:convert';
+import 'dart:developer';
+
+import 'package:json_annotation/json_annotation.dart';
+import 'package:xml/xml.dart';
+
+import '/app/modules/transaction/domain/entities/bank.dart';
+import '../../../../../app/core/interfaces/entity_model.dart';
+
+BankList bankListModelFromJson(String str) =>
+    BankList.fromJson(json.decode(str));
+
+BankModel bankModelFromJson(String str) => BankModel.fromJson(json.decode(str));
+
+String bankModelToJson(BankModel data) => json.encode(data.toJson());
+
+class BankList<T extends BankModel> implements EntityModelList<T> {
+  final List<T> banks;
+
+  BankList({
+    required this.banks,
+  });
+
+  factory BankList.fromJson(Map<String, dynamic> json) => BankList(
+        banks: List<T>.from(json["banks"].map((x) => BankModel.fromJson(x))),
+      );
+
+  factory BankList.fromStringJson(String strJson) =>
+      BankList.fromJson(json.decode(strJson));
+
+  @override
+  int get getTotal => getList().length;
+
+  @override
+  EntityModelList<T> add(T element) => fromList([element]);
+
+  @override
+  EntityModelList<T> fromJson(Map<String, dynamic> json) {
+    return BankList.fromJson(json);
+  }
+
+  @override
+  EntityModelList<T> fromList(List<T> list) {
+    for (var element in list) {
+      if (!banks.contains(element)) banks.add(element);
+    }
+    return this;
+  }
+
+  @override
+  EntityModelList<T> fromStringJson(String strJson) {
+    return BankList.fromStringJson(strJson);
+  }
+
+  @override
+  List<T> getList() => banks;
+
+  Map<String, dynamic> toJson() => {
+        "banks": List<dynamic>.from(banks.map((x) => x.toJson())),
+      };
+
+  static Future<T> fromXmlServiceUrl<T>(
+      String url,
+      String parentTagName,
+      Future<T> Function(XmlDocument doc, XmlElement el) process,
+      Future<T> Function() onError) async {
+    return EntityModelList.fromXmlServiceUrl(
+        url, parentTagName, process, onError);
+  }
+
+  static Future<T> getJsonFromXMLUrl<T>(
+      String url,
+      Future<T> Function(XmlDocument result) process,
+      Future<T> Function() onError) async {
+    return EntityModelList.getJsonFromXMLUrl(url, process, onError);
+  }
+}
+
+@JsonSerializable()
+class BankModel extends Bank implements EntityModel {
+  @override
+  final String name;
+  @override
+  final String code;
+  @override
+  final String certificate;
+
+  @override
+  Map<String, ColumnMetaModel>? metaModel;
+
+  BankModel({required this.name, required this.code, required this.certificate})
+      : super(name: name, code: code, certificate: certificate);
+
+  factory BankModel.fromJson(Map<String, dynamic> json) => BankModel(
+        name: json.containsKey("name") && json["name"] != null
+            ? json["name"]
+            : "",
+        code: json.containsKey("code") && json["code"] != null
+            ? json["code"]
+            : "",
+        certificate:
+            json.containsKey("certificate") && json["certificate"] != null
+                ? json["certificate"]
+                : "",
+      );
+
+  factory BankModel.fromXml(
+          XmlElement element, BankModel Function(XmlElement el) process) =>
+      process(element);
+
+  @override
+  Map<String, ColumnMetaModel>? get getMetaModel => getColumnMetaModel();
+
+  @override
+  set setMetaModel(Map<String, ColumnMetaModel> newMetaModel) {
+    metaModel = newMetaModel;
+  }
+
+  @override
+  EntityModelList createModelListFrom(dynamic data) {
+    try {
+      if (data is Map) {
+        return BankList.fromJson(data as Map<String, dynamic>);
+      }
+      if (data is String) {
+        return BankList.fromStringJson(data);
+      }
+    } on Exception {
+      log("Error al mapear el parámetro 'data'. Debe ser de tipo'Map<String, dynamic>' o String");
+    }
+    return BankList.fromJson({});
+  }
+
+  @override
+  Map<String, ColumnMetaModel> getColumnMetaModel() {
+    ////Map<String, String> colNames = getColumnNames();
+    metaModel = metaModel ??
+        {
+          //TODO Declare here all ColumnMetaModel. you can use class implementation of class "DefaultColumnMetaModel".
+        };
+    int index = 0;
+    metaModel!.forEach((key, value) {
+      value.setColumnIndex(index++);
+    });
+    return metaModel!;
+  }
+
+  @override
+  Map<String, String> getColumnNames() {
+    return {"id_cordenate": "ID"};
+  }
+
+  @override
+  List<String> getColumnNamesList() {
+    return getColumnNames().values.toList();
+  }
+
+  StreamController<EntityModel> getController({
+    void Function()? onListen,
+    void Function()? onPause,
+    void Function()? onResume,
+    FutureOr<void> Function()? onCancel,
+  }) {
+    return EntityModel.getController(
+        entity: this,
+        onListen: onListen,
+        onPause: onPause,
+        onResume: onResume,
+        onCancel: onCancel);
+  }
+
+  @override
+  Map<K1, V1> getMeta<K1, V1>(String searchKey, dynamic searchValue) {
+    final Map<K1, V1> result = {};
+    getColumnMetaModel().map<K1, V1>((key, value) {
+      MapEntry<K1, V1> el = MapEntry(value.getDataIndex() as K1, value as V1);
+      if (value[searchKey] == searchValue) {
+        result.putIfAbsent(value.getDataIndex() as K1, () {
+          return value as V1;
+        });
+      }
+      return el;
+    });
+    return result;
+  }
+
+  @override
+  Map<String, String> getVisibleColumnNames() {
+    Map<String, String> names = {};
+    getMeta<String, ColumnMetaModel>("visible", true)
+        .map<String, String>((key, value) {
+      names.putIfAbsent(key, () => value.getColumnName());
+      return MapEntry(key, value.getColumnName());
+    });
+    return names;
+    // throw UnimplementedError();
+  }
+
+  @override
+  Map<String, dynamic> toJson() => {
+        "name": name,
+        "code": code,
+        "certificate": certificate,
+      };
+
+  @override
+  Map<String, ColumnMetaModel> updateColumnMetaModel(
+      String keySearch, dynamic valueSearch, dynamic newValue) {
+    Map<String, ColumnMetaModel> tmp = getColumnMetaModel();
+    getMeta<String, ColumnMetaModel>(keySearch, valueSearch)
+        .map<String, ColumnMetaModel>((key, value) {
+      tmp.putIfAbsent(key, () => value);
+      return MapEntry(key, value);
+    });
+    return metaModel = tmp;
+  }
+
+  @override
+  static T getValueFrom<T>(
+      String key, Map<dynamic, dynamic> json, T defaultValue,
+      {JsonReader<T>? reader}) {
+    return EntityModel.getValueFromJson<T>(key, json, defaultValue,
+        reader: reader);
+  }
+}

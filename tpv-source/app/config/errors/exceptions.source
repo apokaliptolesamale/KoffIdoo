@@ -1,0 +1,333 @@
+// ignore_for_file: overridden_fields
+
+import 'package:get/get_connect/connect.dart';
+
+import 'fault.dart';
+
+class CacheException extends HttpServerException {
+  @override
+  dynamic response;
+  @override
+  String message = "Existe un error de I/O en la cache de datos.";
+  @override
+  Fault? fault = Fault(
+      faultCode: 0,
+      type: "TypeError",
+      message: "Existe un error de I/O en la cache de datos.",
+      description: "Existe un error de I/O en la cache de datos.");
+
+  CacheException({
+    this.response,
+    this.fault,
+  }) : super(
+          response: response,
+          fault: fault,
+        );
+  @override
+  String get exceptionMessage => message;
+}
+
+class CastErrorException extends HttpServerException {
+  @override
+  dynamic response;
+  @override
+  String message = "Existe un error de casteo de datos.";
+  @override
+  Fault? fault = Fault(
+      faultCode: 0,
+      type: "TypeError",
+      message: "Existe un error de casteo de datos.",
+      description:
+          "Existe un error de casteo de datos. Está intentando convertir un tipo de dato a otro y no es posible hacerlo.");
+
+  CastErrorException({
+    this.response,
+    this.fault,
+  }) : super(
+          response: response,
+          fault: fault,
+        );
+  @override
+  String get exceptionMessage => message;
+}
+
+class HttpServerException extends ServerException {
+  @override
+  dynamic response;
+  @override
+  Fault? fault;
+
+  HttpServerException({
+    this.response,
+    this.fault,
+  }) : super();
+
+  String get exceptionMessage => getMessage();
+
+  Fault get getFault => fault!;
+
+  HttpServerException factoryByStatusCode() {
+    switch (response!.statusCode) {
+      case 400:
+        return HttpServerException400(
+          response: response,
+          fault: fault,
+        );
+      case 401:
+        return HttpServerException401(
+          response: response,
+          fault: fault,
+        );
+      case 403:
+        return HttpServerException403(
+          response: response,
+          fault: fault,
+        );
+      case 404:
+        return HttpServerException404(
+          response: response,
+          fault: fault,
+        );
+      case 429:
+        return HttpServerException403(
+          response: response,
+          fault: fault,
+        );
+      case 500:
+        return HttpServerException500(
+          response: response,
+          fault: fault,
+        );
+      case 503:
+        return HttpServerException503(
+          response: response,
+          fault: fault,
+        );
+    }
+    return this;
+  }
+
+  Map toJson() {
+    return {
+      "fault": fault != null ? fault!.toJson() : {},
+      "headers":
+          response is Response ? (response as Response).headers ?? {} : {},
+      "response": response is Response
+          ? {
+              "body": (response as Response).body.toString(),
+              "bodyString": (response as Response).bodyString,
+              "statusCode": (response as Response).statusCode,
+              "statusText": (response as Response).statusText,
+              "unauthorized": (response as Response).unauthorized,
+              "isOk": (response as Response).isOk,
+              "hasError": (response as Response).hasError,
+            }
+          : {},
+    };
+  }
+}
+
+class HttpServerException400 extends HttpServerException {
+  @override
+  dynamic response;
+  @override
+  Fault? fault;
+  @override
+  String message = "Sintaxis inválida en la petición.";
+  HttpServerException400({
+    this.response,
+    this.fault,
+  }) : super(response: response, fault: fault);
+
+  @override
+  String get exceptionMessage => message;
+}
+
+class HttpServerException401 extends HttpServerException {
+  @override
+  dynamic response;
+  @override
+  Fault? fault;
+  @override
+  String message = "No autenticado.";
+  HttpServerException401({
+    this.response,
+    this.fault,
+  }) : super(
+          response: response,
+          fault: fault,
+        );
+  @override
+  String get exceptionMessage => message;
+}
+
+class HttpServerException403 extends HttpServerException {
+  @override
+  dynamic response;
+  @override
+  Fault? fault;
+  @override
+  String message = "Permisos insuficientes para acceder a este contenido.";
+  HttpServerException403({
+    this.response,
+    this.fault,
+  }) : super(response: response, fault: fault);
+  @override
+  String get exceptionMessage => message;
+}
+
+class HttpServerException404 extends HttpServerException {
+  @override
+  dynamic response;
+  @override
+  Fault? fault;
+  @override
+  String message = "El servidor no pudo encontrar el contenido solicitado.";
+  HttpServerException404({
+    this.response,
+    this.fault,
+  }) : super(
+          response: response,
+          fault: fault,
+        );
+  @override
+  String get exceptionMessage => message;
+}
+
+class HttpServerException429 extends HttpServerException {
+  @override
+  dynamic response;
+  @override
+  Fault? fault;
+  @override
+  String message =
+      "Se ha sobrepasado el límite de las solicitudes en un período de tiempo dado.";
+  HttpServerException429({
+    this.response,
+    this.fault,
+  }) : super(
+          response: response,
+          fault: fault,
+        );
+  @override
+  String get exceptionMessage => message;
+}
+
+class HttpServerException500 extends HttpServerException {
+  @override
+  dynamic response;
+  @override
+  Fault? fault;
+  @override
+  String message = "Error interno en el servidor.";
+  HttpServerException500({
+    this.response,
+    this.fault,
+  }) : super(
+          response: response,
+          fault: fault,
+        );
+  @override
+  String get exceptionMessage => message;
+}
+
+class HttpServerException503 extends HttpServerException {
+  @override
+  dynamic response;
+  @override
+  Fault? fault;
+  @override
+  String message = "El servidor no está listo para manejar la petición.";
+  HttpServerException503({
+    this.response,
+    this.fault,
+  }) : super(
+          response: response,
+          fault: fault,
+        );
+  @override
+  String get exceptionMessage => message;
+}
+
+class RemoteResponseException extends HttpServerException {
+  @override
+  dynamic response;
+  @override
+  String message = "Ha ocurrido un error...";
+
+  @override
+  Fault? fault = Fault(
+      faultCode: 0,
+      type: "TypeError",
+      message: "Ha ocurrido un error...",
+      description:
+          "Ha ocurrido un error inesperado en la llamada del recurso remoto.");
+
+  RemoteResponseException({
+    this.response,
+    this.fault,
+  }) : super(
+          response: response,
+          fault: fault,
+        );
+  @override
+  String get exceptionMessage => message;
+}
+
+class RequiredTypeErrorException extends HttpServerException {
+  @override
+  dynamic response;
+  @override
+  String message = "Existe un error de tipo de dato requerido.";
+  @override
+  Fault? fault = Fault(
+    faultCode: 0,
+    type: "RequiredTypeError",
+    message: "Existe un error de tipo de dato requerido.",
+    description:
+        "Existe un error de tipo de dato requerido. El error es causado porque se espera un valor requerido que no ha sido proporcionado.",
+  );
+
+  RequiredTypeErrorException({
+    this.response,
+    this.fault,
+  }) : super(
+          response: response,
+          fault: fault,
+        );
+  @override
+  String get exceptionMessage => message;
+}
+
+class ServerException implements Exception {
+  dynamic response;
+  Fault? fault;
+  String message = "Desconocido";
+  ServerException();
+  String getMessage() {
+    return fault != null ? fault!.message : message;
+  }
+}
+
+class TypeErrorException extends HttpServerException {
+  @override
+  dynamic response;
+  @override
+  String message = "Existe un error de tipo de datos.";
+  @override
+  Fault? fault = Fault(
+      faultCode: 0,
+      type: "TypeError",
+      message: "Existe un error de tipo de datos.",
+      description: "Existe un error de tipo de datos.");
+
+  TypeErrorException({
+    this.response,
+    this.fault,
+  }) : super(
+          response: response,
+          fault: fault,
+        );
+  @override
+  String get exceptionMessage => message;
+}

@@ -1,0 +1,416 @@
+import 'dart:convert';
+
+import 'package:apk_template/features/apk_comercio_experto/data/models/any_images_model.dart';
+import 'package:apk_template/features/apk_comercio_experto/domain/entities/entities.dart';
+
+
+CategoryListModel categoryListFromJson(String str) =>
+    CategoryListModel.fromJson(json.decode(str));
+
+String categoryListToJson(CategoryListModel data) => json.encode(data.toJson());
+
+class CategoryListModel {
+  final List<CategoryModel>? categories;
+
+  CategoryListModel({this.categories});
+
+  factory CategoryListModel.fromJson(Map<String, dynamic> json) =>
+      CategoryListModel(
+        categories: json["categories"] == null
+            ? []
+            : List<CategoryModel>.from(
+                json["categories"].map((x) => CategoryModel.fromJson(x)),
+              ),
+      );
+
+  Map<String, dynamic> toJson() => {
+        "categories": categories == null
+            ? []
+            : List<dynamic>.from(categories!.map((x) => x.toJson)),
+      };
+}
+
+class CategoryModel extends Category {
+  @override
+  int? id;
+  @override
+  String? name;
+  @override
+  int? parent;
+  @override
+  String? description;
+  @override
+  AnyImageEntity ? image;
+  @override
+  int? count;
+
+  CategoryModel({
+    this.id,
+    this.name,
+    this.parent,
+    this.description,
+    this.image,
+    this.count,
+  });
+
+  factory CategoryModel.fromJson(Map<String, dynamic> json) => CategoryModel(
+        id: json['id'],
+        name: json['name'],
+        parent: json['parent'],
+        description: json['description'],
+        image: json['image'] != null
+            ? AnyImageModel.fromJson(json['image'])
+            : null,
+        count: json['count'],
+      );
+
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'name': name,
+        'parent': parent,
+        'description': description,
+        'image': jsonEncode(image),
+        'count': count,
+      };
+}
+class ListCategory {
+  ListCategory({
+    required this.results,
+  });
+  List<CategoryModel> results;
+  
+  factory ListCategory.fromJson(List<dynamic> str){
+    if (str !="Error" &&  str!="{}") {
+      return ListCategory.fromMap(str);
+    }
+      else {
+        const str2="{"
+            "results: []"
+            "}";
+        return ListCategory.fromMap(json.decode(str2));
+      }
+
+  }
+
+
+
+  factory ListCategory.fromMap(List< dynamic> json){
+    return  ListCategory(
+        results: List<CategoryModel>.from(json.map((x) => CategoryModel.fromJson(jsonDecode(x)))),
+      );
+  }
+
+}
+// // ignore_for_file: overridden_fields
+
+
+
+
+
+// import 'dart:async';
+// import 'dart:convert';
+
+// import 'package:xml/xml.dart';
+
+// import '/app/core/interfaces/entity_model.dart';
+// import '/app/core/services/logger_service.dart';
+// import '/app/modules/product/domain/entities/any_image.dart';
+// import '/app/modules/product/domain/entities/category.dart';
+
+// CategoryList categoryListModelFromJson(String str) =>
+//     CategoryList.fromJson(json.decode(str));
+
+// CategoryModel categoryModelFromJson(String str) =>
+//     CategoryModel.fromJson(json.decode(str));
+
+// String categoryModelToJson(CategoryModel data) => json.encode(data.toJson());
+
+// class CategoryList<T extends CategoryModel> implements EntityModelList<T> {
+//   final List<T> categories;
+//   CategoryList({
+//     required this.categories,
+//   });
+//   factory CategoryList.fromJson(Map<String, dynamic> json) => CategoryList(
+//         categories: json.containsKey("categories")
+//             ? List<T>.from(
+//                 json["categories"].map((x) => CategoryModel.fromJson(x)))
+//             : [],
+//       );
+
+//   factory CategoryList.fromStringJson(String strJson) =>
+//       CategoryList.fromJson(json.decode(strJson));
+
+//   @override
+//   int get getTotal => getList().length;
+
+//   @override
+//   EntityModelList<T> add(T element) {
+//     !categories.contains(element) ? categories.add(element) : false;
+//     return this;
+//   }
+
+//   @override
+//   EntityModelList<T> addAll(EntityModelList<T> newItems) {
+//     categories.addAll(newItems.getList());
+//     return this;
+//   }
+
+//   @override
+//   EntityModelList<T> fromJson(Map<String, dynamic> json) {
+//     return CategoryList.fromJson(json);
+//   }
+
+//   @override
+//   EntityModelList<T> fromList(List<T> list) {
+//     for (var element in list) {
+//       if (!categories.contains(element)) categories.add(element);
+//     }
+//     return this;
+//   }
+
+//   @override
+//   EntityModelList<T> fromStringJson(String strJson) {
+//     return CategoryList.fromStringJson(strJson);
+//   }
+
+//   @override
+//   List<T> getList() => categories;
+
+//   @override
+//   EntityModelList<T> remove(T element) {
+//     categories.remove(element);
+//     return this;
+//   }
+
+//   Map<String, dynamic> toJson() => {
+//         "categories": List<dynamic>.from(categories.map((x) => x.toJson())),
+//       };
+
+//   static Future<CategoryList> fromXmlServiceUrl(
+//       String url,
+//       String parentTagName,
+//       Future<CategoryList> Function(XmlElement el) process) async {
+//     try {
+//       XmlDocument? doc = XmlDocument.parse(url);
+//       final element = doc.getElement(parentTagName);
+//       if (element != null) {
+//         return process(element);
+//       }
+//       return Future.value(CategoryList.fromJson({}));
+//     } catch (e) {
+//       throw Exception(e.toString());
+//     }
+//   }
+// }
+
+// class CategoryModel extends Category implements EntityModel {
+//   @override
+//   Map<String, ColumnMetaModel>? metaModel;
+
+//   @override
+//   bool? selected;
+//   @override
+//   String getColumnIdName() {
+//     return "id";
+//   }
+
+//   @override
+//   dynamic getId() {
+//     return id;
+//   }
+
+//   @override
+//   int id;
+//   @override
+//   String name;
+
+//   @override
+//   int parent;
+
+//   @override
+//   String description;
+
+//   @override
+//   AnyImage image;
+//   @override
+//   int count;
+
+//   CategoryModel({
+//     required this.id,
+//     required this.name,
+//     required this.parent,
+//     required this.description,
+//     required this.image,
+//     required this.count,
+//   }) : super(
+//           id: id,
+//           name: name,
+//           parent: parent,
+//           description: description,
+//           image: image,
+//           count: count,
+//         );
+
+//   factory CategoryModel.fromJson(Map<String, dynamic> json) => CategoryModel(
+//         id: json["id"],
+//         name: json["number"],
+//         parent: json["address"],
+//         description: json["status"],
+//         image: json["status"],
+//         count: json["count"],
+//       );
+//   factory CategoryModel.fromXml(
+//           XmlElement element, CategoryModel Function(XmlElement el) process) =>
+//       process(element);
+//   @override
+//   Map<String, ColumnMetaModel>? get getMetaModel => getColumnMetaModel();
+//   @override
+//   bool get isSelected => selected ?? false;
+
+//   List<Object?> get props => [];
+
+//   @override
+//   set setMetaModel(Map<String, ColumnMetaModel> newMetaModel) {
+//     metaModel = newMetaModel;
+//   }
+
+//   bool? get stringify => true;
+
+//   //method generated by wizard
+//   T cloneWith<T extends EntityModel>(T other) {
+//     return CategoryModel.fromJson(other.toJson()) as T;
+//   }
+
+//   @override
+//   EntityModelList createModelListFrom(dynamic data) {
+//     try {
+//       if (data is Map) {
+//         return CategoryList.fromJson(data as Map<String, dynamic>);
+//       }
+//       if (data is String) {
+//         return CategoryList.fromStringJson(data);
+//       }
+//     } on Exception {
+//       log("Error al mapear el parámetro 'data'. Debe ser de tipo'Map<String, dynamic>' o String");
+//     }
+//     return CategoryList.fromJson({});
+//   }
+
+//   T fromJson<T extends EntityModel>(Map<String, dynamic> params) {
+//     return CategoryModel.fromJson(params) as T;
+//   }
+
+//   @override
+//   Map<String, ColumnMetaModel> getColumnMetaModel() {
+//     try {
+//       //Map<String, String> colNames = getColumnNames();
+//       metaModel = metaModel ??
+//           {
+//             //TODO Declare here all ColumnMetaModel. you can use class implementation of class "DefaultColumnMetaModel".
+//           };
+//       int index = 0;
+//       metaModel!.forEach((key, value) {
+//         value.setColumnIndex(index++);
+//       });
+//       return metaModel!;
+//     } catch (e) {
+//       throw Exception(e.toString());
+//     }
+//   }
+
+//   @override
+//   Map<String, String> getColumnNames() {
+//     return {
+//       "id": "ID",
+//       "name": "Nombre",
+//       "parent": "Padre",
+//       "description": "Descripción",
+//       "image": "Imagen",
+//       "count": "Cantidad",
+//     };
+//   }
+
+//   @override
+//   List<String> getColumnNamesList() {
+//     return getColumnNames().values.toList();
+//   }
+
+//   StreamController<EntityModel> getController({
+//     void Function()? onListen,
+//     void Function()? onPause,
+//     void Function()? onResume,
+//     FutureOr<void> Function()? onCancel,
+//   }) {
+//     return EntityModel.getController(
+//       entity: this,
+//       onListen: onListen,
+//       onPause: onPause,
+//       onResume: onResume,
+//       onCancel: onCancel,
+//     );
+//   }
+
+//   @override
+//   Map<K1, V1> getMeta<K1, V1>(String searchKey, dynamic searchValue) {
+//     try {
+//       final Map<K1, V1> result = {};
+//       getColumnMetaModel().map<K1, V1>((key, value) {
+//         MapEntry<K1, V1> el = MapEntry(value.getDataIndex() as K1, value as V1);
+//         if (value[searchKey] == searchValue) {
+//           result.putIfAbsent(value.getDataIndex() as K1, () {
+//             return value as V1;
+//           });
+//         }
+//         return el;
+//       });
+//       return result;
+//     } catch (e) {
+//       throw Exception(e.toString());
+//     }
+//   }
+
+//   @override
+//   Map<String, String> getVisibleColumnNames() {
+//     try {
+//       Map<String, String> names = {};
+//       getMeta<String, ColumnMetaModel>("visible", true)
+//           .map<String, String>((key, value) {
+//         names.putIfAbsent(key, () => value.getColumnName());
+//         return MapEntry(key, value.getColumnName());
+//       });
+//       return names;
+//       // throw UnimplementedError();
+//     } catch (e) {
+//       throw Exception(e.toString());
+//     }
+//   }
+
+//   @override
+//   Map<String, dynamic> toJson() => {
+//         "id": id,
+//         "name": name,
+//         "parent": parent,
+//         "description": description,
+//         "image": image,
+//         "count": count,
+//       };
+
+//   @override
+//   Map<String, ColumnMetaModel> updateColumnMetaModel(
+//       String keySearch, dynamic valueSearch, dynamic newValue) {
+//     Map<String, ColumnMetaModel> tmp = getColumnMetaModel();
+//     getMeta<String, ColumnMetaModel>(keySearch, valueSearch)
+//         .map<String, ColumnMetaModel>((key, value) {
+//       tmp.putIfAbsent(key, () => value);
+//       return MapEntry(key, value);
+//     });
+//     return metaModel = tmp;
+//   }
+
+//   static T getValueFrom<T>(
+//       String key, Map<String, dynamic> json, T defaultValue,
+//       {JsonReader<T>? reader}) {
+//     return EntityModel.getValueFromJson<T>(key, json, defaultValue,
+//         reader: reader);
+//   }
+// }

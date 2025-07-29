@@ -1,0 +1,110 @@
+{
+    "products": [
+      {
+        "id": "P001",
+        "name": "Smartphone X",
+        "description": "High-end smartphone with advanced features",
+        "regularPrice": 799.99,
+        "salePrice": 699.99,
+        "discount": 12.5,
+        "ifItemAvailable": true,
+        "ifAddedToCart": false,
+        "stockQuantity": 100,
+        "warrantyTime": 24,
+        "quantity": 1,
+        "categories": [
+          {
+            "id": 1,
+            "name": "Electronics",
+            "parent": null,
+            "description": "General electronics category",
+            "image": null,
+            "count": 0
+          },
+          {
+            "id": 2,
+            "name": "Mobile Phones",
+            "parent": 1,
+            "description": "Category for mobile phones",
+            "image": null,
+            "count": 0
+          }
+        ],
+        "images": [
+          "https://example.com/images/smartphone-x.jpg"
+        ],
+        "size": ["6.5 inches"]
+      },
+      {
+        "id": "P002",
+        "name": "Laptop Pro",
+        "description": "Powerful laptop for professional use",
+        "regularPrice": 1299.99,
+        "salePrice": 1199.99,
+        "discount": 8.5,
+        "ifItemAvailable": true,
+        "ifAddedToCart": false,
+        "stockQuantity": 50,
+        "warrantyTime": 36,
+        "quantity": 1,
+        "categories": [
+          {
+            "id": 1,
+            "name": "Electronics",
+            "parent": null,
+            "description": "General electronics category",
+            "image": null,
+            "count": 0
+          },
+          {
+            "id": 3,
+            "name": "Computers",
+            "parent": 1,
+            "description": "Category for computers",
+            "image": null,
+            "count": 0
+          }
+        ],
+        "images": [
+          "https://example.com/images/laptop-pro.jpg",
+          "https://example.com/images/laptop-pro-back.jpg"
+        ],
+        "size": ["15.6 inches"]
+      },
+      {
+        "id": "P003",
+        "name": "Gaming Console",
+        "description": "Advanced gaming console with VR support",
+        "regularPrice": 599.99,
+        "salePrice": 549.99,
+        "discount": 8.5,
+        "ifItemAvailable": true,
+        "ifAddedToCart": false,
+        "stockQuantity": 30,
+        "warrantyTime": 24,
+        "quantity": 1,
+        "categories": [
+          {
+            "id": 1,
+            "name": "Electronics",
+            "parent": null,
+            "description": "General electronics category",
+            "image": null,
+            "count": 0
+          },
+          {
+            "id": 4,
+            "name": "Gaming",
+            "parent": 1,
+            "description": "Category for gaming devices",
+            "image": null,
+            "count": 0
+          }
+        ],
+        "images": [
+          "https://example.com/images/gaming-console.jpg"
+        ],
+        "size": ["10 inches"]
+      }
+    ]
+  }

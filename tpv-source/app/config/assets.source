@@ -1,0 +1,660 @@
+// ignore_for_file: non_constant_identifier_names, depend_on_referenced_packages, camel_case_types
+ import 'dart:io';
+ import 'package:path_provider/path_provider.dart';
+ import 'package:flutter/services.dart' show rootBundle;
+ abstract class AssetsNameSpace {
+		 String getPath() {
+			return toString();
+		}
+	Assets getAsset(String fileName) => Assets.fromPath("${getPath()}/$fileName");
+ }
+ 
+class AssetsFontsImpl implements AssetsNameSpace {
+ 
+	final String path='assets/fonts';
+ 
+	final Assets PacificoRegularTtf = Assets.ASSETS_FONTS_PACIFICO_REGULAR_TTF;
+ 
+	final Assets RobotoBoldTtf = Assets.ASSETS_FONTS_ROBOTO_BOLD_TTF;
+ 
+	final Assets RobotoMediumTtf = Assets.ASSETS_FONTS_ROBOTO_MEDIUM_TTF;
+ 
+	final Assets RobotoRegularTtf = Assets.ASSETS_FONTS_ROBOTO_REGULAR_TTF;
+ 
+	final Assets SourceSansProRegularTtf = Assets.ASSETS_FONTS_SOURCESANSPRO_REGULAR_TTF;
+ 
+	AssetsFontsImpl();
+ 
+	@override
+	String getPath() => path;
+	@override
+	Assets getAsset(String fileName) => Assets.fromPath("${getPath()}/$fileName"); 
+
+}
+ 
+class AssetsImagesImpl implements AssetsNameSpace {
+ 
+	final String path='assets/images';
+ 
+	final Assets PacificoRegularTtf = Assets.ASSETS_FONTS_PACIFICO_REGULAR_TTF;
+ 
+	final Assets RobotoBoldTtf = Assets.ASSETS_FONTS_ROBOTO_BOLD_TTF;
+ 
+	final Assets RobotoMediumTtf = Assets.ASSETS_FONTS_ROBOTO_MEDIUM_TTF;
+ 
+	final Assets RobotoRegularTtf = Assets.ASSETS_FONTS_ROBOTO_REGULAR_TTF;
+ 
+	final Assets SourceSansProRegularTtf = Assets.ASSETS_FONTS_SOURCESANSPRO_REGULAR_TTF;
+ 
+	AssetsImagesImpl();
+ 
+	@override
+	String getPath() => path;
+	@override
+	Assets getAsset(String fileName) => Assets.fromPath("${getPath()}/$fileName"); 
+
+}
+
+class AssetsImagesBackgroundsImpl implements AssetsNameSpace {
+ 
+	final String path='assets/images/backgrounds';
+ 
+	AssetsImagesBackgroundsImpl();
+ 
+	@override
+	String getPath() => path;
+	@override
+	Assets getAsset(String fileName) => Assets.fromPath("${getPath()}/$fileName"); 
+
+}
+
+class AssetsImagesBackgroundsEnzonaImpl implements AssetsNameSpace {
+ 
+	final String path='assets/images/backgrounds/enzona';
+ 
+	final Assets back1Png = Assets.ASSETS_IMAGES_BACKGROUNDS_ENZONA_BACK1_PNG;
+ 
+	final Assets back2Png = Assets.ASSETS_IMAGES_BACKGROUNDS_ENZONA_BACK2_PNG;
+ 
+	final Assets back3Png = Assets.ASSETS_IMAGES_BACKGROUNDS_ENZONA_BACK3_PNG;
+ 
+	AssetsImagesBackgroundsEnzonaImpl();
+ 
+	@override
+	String getPath() => path;
+	@override
+	Assets getAsset(String fileName) => Assets.fromPath("${getPath()}/$fileName"); 
+
+}
+ 
+class AssetsImagesBackgroundsTpvImpl implements AssetsNameSpace {
+ 
+	final String path='assets/images/backgrounds/tpv';
+ 
+	final Assets back1Png = Assets.ASSETS_IMAGES_BACKGROUNDS_ENZONA_BACK1_PNG;
+ 
+	final Assets back2Png = Assets.ASSETS_IMAGES_BACKGROUNDS_ENZONA_BACK2_PNG;
+ 
+	final Assets back3Png = Assets.ASSETS_IMAGES_BACKGROUNDS_ENZONA_BACK3_PNG;
+ 
+	final Assets tpvDefaultJpg = Assets.ASSETS_IMAGES_BACKGROUNDS_TPV_TPV_DEFAULT_JPG;
+ 
+	AssetsImagesBackgroundsTpvImpl();
+ 
+	@override
+	String getPath() => path;
+	@override
+	Assets getAsset(String fileName) => Assets.fromPath("${getPath()}/$fileName"); 
+
+}
+ 
+class AssetsImagesBackgroundsWarrantyImpl implements AssetsNameSpace {
+ 
+	final String path='assets/images/backgrounds/warranty';
+ 
+	final Assets back1Png = Assets.ASSETS_IMAGES_BACKGROUNDS_ENZONA_BACK1_PNG;
+ 
+	final Assets back2Png = Assets.ASSETS_IMAGES_BACKGROUNDS_ENZONA_BACK2_PNG;
+ 
+	final Assets back3Png = Assets.ASSETS_IMAGES_BACKGROUNDS_ENZONA_BACK3_PNG;
+ 
+	final Assets tpvDefaultJpg = Assets.ASSETS_IMAGES_BACKGROUNDS_TPV_TPV_DEFAULT_JPG;
+ 
+	final Assets defaultJpg = Assets.ASSETS_IMAGES_BACKGROUNDS_WARRANTY_DEFAULT_JPG;
+ 
+	AssetsImagesBackgroundsWarrantyImpl();
+ 
+	@override
+	String getPath() => path;
+	@override
+	Assets getAsset(String fileName) => Assets.fromPath("${getPath()}/$fileName"); 
+
+}
+ 
+class AssetsImagesIconsImpl implements AssetsNameSpace {
+ 
+	final String path='assets/images/icons';
+ 
+	AssetsImagesIconsImpl();
+ 
+	@override
+	String getPath() => path;
+	@override
+	Assets getAsset(String fileName) => Assets.fromPath("${getPath()}/$fileName"); 
+
+}
+
+class AssetsImagesIconsAppImpl implements AssetsNameSpace {
+ 
+	final String path='assets/images/icons/app';
+ 
+	final Assets carritoPng = Assets.ASSETS_IMAGES_ICONS_APP_CARRITO_PNG;
+ 
+	final Assets cuentaPng = Assets.ASSETS_IMAGES_ICONS_APP_CUENTA_PNG;
+ 
+	final Assets emptyimgJpeg = Assets.ASSETS_IMAGES_ICONS_APP_EMPTYIMG_JPEG;
+ 
+	final Assets escanerAmigoPng = Assets.ASSETS_IMAGES_ICONS_APP_ESCANER_AMIGO_PNG;
+ 
+	final Assets icProductoPng = Assets.ASSETS_IMAGES_ICONS_APP_IC_PRODUCTO_PNG;
+ 
+	final Assets sinNadaPng = Assets.ASSETS_IMAGES_ICONS_APP_SIN_NADA_PNG;
+ 
+	AssetsImagesIconsAppImpl();
+ 
+	@override
+	String getPath() => path;
+	@override
+	Assets getAsset(String fileName) => Assets.fromPath("${getPath()}/$fileName"); 
+
+}
+
+class AssetsImagesIconsAppEnzonaImpl implements AssetsNameSpace {
+ 
+	final String path='assets/images/icons/app/enzona';
+ 
+	final Assets ezDefaultPng = Assets.ASSETS_IMAGES_ICONS_APP_ENZONA_EZ_DEFAULT_PNG;
+ 
+	AssetsImagesIconsAppEnzonaImpl();
+ 
+	@override
+	String getPath() => path;
+	@override
+	Assets getAsset(String fileName) => Assets.fromPath("${getPath()}/$fileName"); 
+
+}
+ 
+class AssetsImagesIconsAppTpvImpl implements AssetsNameSpace {
+ 
+	final String path='assets/images/icons/app/tpv';
+ 
+	final Assets ezDefaultPng = Assets.ASSETS_IMAGES_ICONS_APP_ENZONA_EZ_DEFAULT_PNG;
+ 
+	final Assets tpvDefaultPng = Assets.ASSETS_IMAGES_ICONS_APP_TPV_TPV_DEFAULT_PNG;
+ 
+	AssetsImagesIconsAppTpvImpl();
+ 
+	@override
+	String getPath() => path;
+	@override
+	Assets getAsset(String fileName) => Assets.fromPath("${getPath()}/$fileName"); 
+
+}
+ 
+class AssetsImagesIconsAppWarrantyImpl implements AssetsNameSpace {
+ 
+	final String path='assets/images/icons/app/warranty';
+ 
+	final Assets ezDefaultPng = Assets.ASSETS_IMAGES_ICONS_APP_ENZONA_EZ_DEFAULT_PNG;
+ 
+	final Assets tpvDefaultPng = Assets.ASSETS_IMAGES_ICONS_APP_TPV_TPV_DEFAULT_PNG;
+ 
+	final Assets garantiaJpeg = Assets.ASSETS_IMAGES_ICONS_APP_WARRANTY_GARANTIA_JPEG;
+ 
+	final Assets pedidosPng = Assets.ASSETS_IMAGES_ICONS_APP_WARRANTY_PEDIDOS_PNG;
+ 
+	final Assets transportePng = Assets.ASSETS_IMAGES_ICONS_APP_WARRANTY_TRANSPORTE_PNG;
+ 
+	final Assets warrantyBlueJpeg = Assets.ASSETS_IMAGES_ICONS_APP_WARRANTY_WARRANTY_BLUE_JPEG;
+ 
+	final Assets warrantyCertPng = Assets.ASSETS_IMAGES_ICONS_APP_WARRANTY_WARRANTY_CERT_PNG;
+ 
+	final Assets warrantyIconBluePng = Assets.ASSETS_IMAGES_ICONS_APP_WARRANTY_WARRANTY_ICON_BLUE_PNG;
+ 
+	final Assets warrantyIconPng = Assets.ASSETS_IMAGES_ICONS_APP_WARRANTY_WARRANTY_ICON_PNG;
+ 
+	final Assets warrantyPngJpeg = Assets.ASSETS_IMAGES_ICONS_APP_WARRANTY_WARRANTY_PNG_JPEG;
+ 
+	AssetsImagesIconsAppWarrantyImpl();
+ 
+	@override
+	String getPath() => path;
+	@override
+	Assets getAsset(String fileName) => Assets.fromPath("${getPath()}/$fileName"); 
+
+}
+ 
+class AssetsImagesLogosImpl implements AssetsNameSpace {
+ 
+	final String path='assets/images/logos';
+ 
+	final Assets logoPng = Assets.ASSETS_IMAGES_LOGOS_LOGO_PNG;
+ 
+	AssetsImagesLogosImpl();
+ 
+	@override
+	String getPath() => path;
+	@override
+	Assets getAsset(String fileName) => Assets.fromPath("${getPath()}/$fileName"); 
+
+}
+
+class AssetsImagesLogosEnzonaImpl implements AssetsNameSpace {
+ 
+	final String path='assets/images/logos/enzona';
+ 
+	final Assets ezLogoPng = Assets.ASSETS_IMAGES_LOGOS_ENZONA_EZ_LOGO_PNG;
+ 
+	AssetsImagesLogosEnzonaImpl();
+ 
+	@override
+	String getPath() => path;
+	@override
+	Assets getAsset(String fileName) => Assets.fromPath("${getPath()}/$fileName"); 
+
+}
+ 
+class AssetsImagesLogosTpvImpl implements AssetsNameSpace {
+ 
+	final String path='assets/images/logos/tpv';
+ 
+	final Assets ezLogoPng = Assets.ASSETS_IMAGES_LOGOS_ENZONA_EZ_LOGO_PNG;
+ 
+	final Assets tpvLogoPng = Assets.ASSETS_IMAGES_LOGOS_TPV_TPV_LOGO_PNG;
+ 
+	AssetsImagesLogosTpvImpl();
+ 
+	@override
+	String getPath() => path;
+	@override
+	Assets getAsset(String fileName) => Assets.fromPath("${getPath()}/$fileName"); 
+
+}
+ 
+class AssetsImagesLogosWarrantyImpl implements AssetsNameSpace {
+ 
+	final String path='assets/images/logos/warranty';
+ 
+	final Assets ezLogoPng = Assets.ASSETS_IMAGES_LOGOS_ENZONA_EZ_LOGO_PNG;
+ 
+	final Assets tpvLogoPng = Assets.ASSETS_IMAGES_LOGOS_TPV_TPV_LOGO_PNG;
+ 
+	final Assets warrantyLogoPng = Assets.ASSETS_IMAGES_LOGOS_WARRANTY_WARRANTY_LOGO_PNG;
+ 
+	AssetsImagesLogosWarrantyImpl();
+ 
+	@override
+	String getPath() => path;
+	@override
+	Assets getAsset(String fileName) => Assets.fromPath("${getPath()}/$fileName"); 
+
+}
+ 
+class AssetsModelsImpl implements AssetsNameSpace {
+ 
+	final String path='assets/models';
+ 
+	final Assets PacificoRegularTtf = Assets.ASSETS_FONTS_PACIFICO_REGULAR_TTF;
+ 
+	final Assets RobotoBoldTtf = Assets.ASSETS_FONTS_ROBOTO_BOLD_TTF;
+ 
+	final Assets RobotoMediumTtf = Assets.ASSETS_FONTS_ROBOTO_MEDIUM_TTF;
+ 
+	final Assets RobotoRegularTtf = Assets.ASSETS_FONTS_ROBOTO_REGULAR_TTF;
+ 
+	final Assets SourceSansProRegularTtf = Assets.ASSETS_FONTS_SOURCESANSPRO_REGULAR_TTF;
+ 
+	final Assets appEnzonaConfJson = Assets.ASSETS_MODELS_APP_ENZONA_CONF_JSON;
+ 
+	final Assets cardsJson = Assets.ASSETS_MODELS_CARDS_JSON;
+ 
+	final Assets casesJson = Assets.ASSETS_MODELS_CASES_JSON;
+ 
+	final Assets configJson = Assets.ASSETS_MODELS_CONFIG_JSON;
+ 
+	final Assets historyJson = Assets.ASSETS_MODELS_HISTORY_JSON;
+ 
+	final Assets ordersJson = Assets.ASSETS_MODELS_ORDERS_JSON;
+ 
+	final Assets productsJson = Assets.ASSETS_MODELS_PRODUCTS_JSON;
+ 
+	final Assets projectJson = Assets.ASSETS_MODELS_PROJECT_JSON;
+ 
+	final Assets tokenJson = Assets.ASSETS_MODELS_TOKEN_JSON;
+ 
+	final Assets transactionsJson = Assets.ASSETS_MODELS_TRANSACTIONS_JSON;
+ 
+	final Assets usersJson = Assets.ASSETS_MODELS_USERS_JSON;
+ 
+	AssetsModelsImpl();
+ 
+	@override
+	String getPath() => path;
+	@override
+	Assets getAsset(String fileName) => Assets.fromPath("${getPath()}/$fileName"); 
+
+}
+ 
+class AssetsRawImpl implements AssetsNameSpace {
+ 
+	final String path='assets/raw';
+ 
+	final Assets PacificoRegularTtf = Assets.ASSETS_FONTS_PACIFICO_REGULAR_TTF;
+ 
+	final Assets RobotoBoldTtf = Assets.ASSETS_FONTS_ROBOTO_BOLD_TTF;
+ 
+	final Assets RobotoMediumTtf = Assets.ASSETS_FONTS_ROBOTO_MEDIUM_TTF;
+ 
+	final Assets RobotoRegularTtf = Assets.ASSETS_FONTS_ROBOTO_REGULAR_TTF;
+ 
+	final Assets SourceSansProRegularTtf = Assets.ASSETS_FONTS_SOURCESANSPRO_REGULAR_TTF;
+ 
+	final Assets appEnzonaConfJson = Assets.ASSETS_MODELS_APP_ENZONA_CONF_JSON;
+ 
+	final Assets cardsJson = Assets.ASSETS_MODELS_CARDS_JSON;
+ 
+	final Assets casesJson = Assets.ASSETS_MODELS_CASES_JSON;
+ 
+	final Assets configJson = Assets.ASSETS_MODELS_CONFIG_JSON;
+ 
+	final Assets historyJson = Assets.ASSETS_MODELS_HISTORY_JSON;
+ 
+	final Assets ordersJson = Assets.ASSETS_MODELS_ORDERS_JSON;
+ 
+	final Assets productsJson = Assets.ASSETS_MODELS_PRODUCTS_JSON;
+ 
+	final Assets projectJson = Assets.ASSETS_MODELS_PROJECT_JSON;
+ 
+	final Assets tokenJson = Assets.ASSETS_MODELS_TOKEN_JSON;
+ 
+	final Assets transactionsJson = Assets.ASSETS_MODELS_TRANSACTIONS_JSON;
+ 
+	final Assets usersJson = Assets.ASSETS_MODELS_USERS_JSON;
+ 
+	final Assets enzonaCrt = Assets.ASSETS_RAW_ENZONA_CRT;
+ 
+	final Assets enzonaNetPem = Assets.ASSETS_RAW_ENZONA_NET_PEM;
+ 
+	final Assets enzonaNetCaPem = Assets.ASSETS_RAW_ENZONA_NET_CA_PEM;
+ 
+	final Assets enzonaNetCertP12 = Assets.ASSETS_RAW_ENZONA_NET_CERT_P12;
+ 
+	final Assets enzonaNetClientPem = Assets.ASSETS_RAW_ENZONA_NET_CLIENT_PEM;
+ 
+	final Assets enzonaNetCrtCrt = Assets.ASSETS_RAW_ENZONA_NET_CRT_CRT;
+ 
+	final Assets enzonaNetCrtPem = Assets.ASSETS_RAW_ENZONA_NET_CRT_PEM;
+ 
+	final Assets enzonaNetKeyKey = Assets.ASSETS_RAW_ENZONA_NET_KEY_KEY;
+ 
+	final Assets pkceSh = Assets.ASSETS_RAW_PKCE_SH;
+ 
+	final Assets privatekeyPem = Assets.ASSETS_RAW_PRIVATEKEY_PEM;
+ 
+	final Assets publiccertPem = Assets.ASSETS_RAW_PUBLICCERT_PEM;
+ 
+	AssetsRawImpl();
+ 
+	@override
+	String getPath() => path;
+	@override
+	Assets getAsset(String fileName) => Assets.fromPath("${getPath()}/$fileName"); 
+
+}
+
+ 
+final String ASSETS_FONTS_PACIFICO_REGULAR_TTF = Assets.ASSETS_FONTS_PACIFICO_REGULAR_TTF.getPath;
+ 
+final String ASSETS_FONTS_ROBOTO_BOLD_TTF = Assets.ASSETS_FONTS_ROBOTO_BOLD_TTF.getPath;
+ 
+final String ASSETS_FONTS_ROBOTO_MEDIUM_TTF = Assets.ASSETS_FONTS_ROBOTO_MEDIUM_TTF.getPath;
+ 
+final String ASSETS_FONTS_ROBOTO_REGULAR_TTF = Assets.ASSETS_FONTS_ROBOTO_REGULAR_TTF.getPath;
+ 
+final String ASSETS_FONTS_SOURCESANSPRO_REGULAR_TTF = Assets.ASSETS_FONTS_SOURCESANSPRO_REGULAR_TTF.getPath;
+ 
+final String ASSETS_IMAGES_BACKGROUNDS_ENZONA_BACK1_PNG = Assets.ASSETS_IMAGES_BACKGROUNDS_ENZONA_BACK1_PNG.getPath;
+ 
+final String ASSETS_IMAGES_BACKGROUNDS_ENZONA_BACK2_PNG = Assets.ASSETS_IMAGES_BACKGROUNDS_ENZONA_BACK2_PNG.getPath;
+ 
+final String ASSETS_IMAGES_BACKGROUNDS_ENZONA_BACK3_PNG = Assets.ASSETS_IMAGES_BACKGROUNDS_ENZONA_BACK3_PNG.getPath;
+ 
+final String ASSETS_IMAGES_BACKGROUNDS_TPV_TPV_DEFAULT_JPG = Assets.ASSETS_IMAGES_BACKGROUNDS_TPV_TPV_DEFAULT_JPG.getPath;
+ 
+final String ASSETS_IMAGES_BACKGROUNDS_WARRANTY_DEFAULT_JPG = Assets.ASSETS_IMAGES_BACKGROUNDS_WARRANTY_DEFAULT_JPG.getPath;
+ 
+final String ASSETS_IMAGES_ICONS_APP_CARRITO_PNG = Assets.ASSETS_IMAGES_ICONS_APP_CARRITO_PNG.getPath;
+ 
+final String ASSETS_IMAGES_ICONS_APP_CUENTA_PNG = Assets.ASSETS_IMAGES_ICONS_APP_CUENTA_PNG.getPath;
+ 
+final String ASSETS_IMAGES_ICONS_APP_EMPTYIMG_JPEG = Assets.ASSETS_IMAGES_ICONS_APP_EMPTYIMG_JPEG.getPath;
+ 
+final String ASSETS_IMAGES_ICONS_APP_ENZONA_EZ_DEFAULT_PNG = Assets.ASSETS_IMAGES_ICONS_APP_ENZONA_EZ_DEFAULT_PNG.getPath;
+ 
+final String ASSETS_IMAGES_ICONS_APP_ESCANER_AMIGO_PNG = Assets.ASSETS_IMAGES_ICONS_APP_ESCANER_AMIGO_PNG.getPath;
+ 
+final String ASSETS_IMAGES_ICONS_APP_IC_PRODUCTO_PNG = Assets.ASSETS_IMAGES_ICONS_APP_IC_PRODUCTO_PNG.getPath;
+ 
+final String ASSETS_IMAGES_ICONS_APP_SIN_NADA_PNG = Assets.ASSETS_IMAGES_ICONS_APP_SIN_NADA_PNG.getPath;
+ 
+final String ASSETS_IMAGES_ICONS_APP_TPV_TPV_DEFAULT_PNG = Assets.ASSETS_IMAGES_ICONS_APP_TPV_TPV_DEFAULT_PNG.getPath;
+ 
+final String ASSETS_IMAGES_ICONS_APP_WARRANTY_GARANTIA_JPEG = Assets.ASSETS_IMAGES_ICONS_APP_WARRANTY_GARANTIA_JPEG.getPath;
+ 
+final String ASSETS_IMAGES_ICONS_APP_WARRANTY_PEDIDOS_PNG = Assets.ASSETS_IMAGES_ICONS_APP_WARRANTY_PEDIDOS_PNG.getPath;
+ 
+final String ASSETS_IMAGES_ICONS_APP_WARRANTY_TRANSPORTE_PNG = Assets.ASSETS_IMAGES_ICONS_APP_WARRANTY_TRANSPORTE_PNG.getPath;
+ 
+final String ASSETS_IMAGES_ICONS_APP_WARRANTY_WARRANTY_BLUE_JPEG = Assets.ASSETS_IMAGES_ICONS_APP_WARRANTY_WARRANTY_BLUE_JPEG.getPath;
+ 
+final String ASSETS_IMAGES_ICONS_APP_WARRANTY_WARRANTY_CERT_PNG = Assets.ASSETS_IMAGES_ICONS_APP_WARRANTY_WARRANTY_CERT_PNG.getPath;
+ 
+final String ASSETS_IMAGES_ICONS_APP_WARRANTY_WARRANTY_ICON_BLUE_PNG = Assets.ASSETS_IMAGES_ICONS_APP_WARRANTY_WARRANTY_ICON_BLUE_PNG.getPath;
+ 
+final String ASSETS_IMAGES_ICONS_APP_WARRANTY_WARRANTY_ICON_PNG = Assets.ASSETS_IMAGES_ICONS_APP_WARRANTY_WARRANTY_ICON_PNG.getPath;
+ 
+final String ASSETS_IMAGES_ICONS_APP_WARRANTY_WARRANTY_PNG_JPEG = Assets.ASSETS_IMAGES_ICONS_APP_WARRANTY_WARRANTY_PNG_JPEG.getPath;
+ 
+final String ASSETS_IMAGES_LOGOS_ENZONA_EZ_LOGO_PNG = Assets.ASSETS_IMAGES_LOGOS_ENZONA_EZ_LOGO_PNG.getPath;
+ 
+final String ASSETS_IMAGES_LOGOS_LOGO_PNG = Assets.ASSETS_IMAGES_LOGOS_LOGO_PNG.getPath;
+ 
+final String ASSETS_IMAGES_LOGOS_TPV_TPV_LOGO_PNG = Assets.ASSETS_IMAGES_LOGOS_TPV_TPV_LOGO_PNG.getPath;
+ 
+final String ASSETS_IMAGES_LOGOS_WARRANTY_WARRANTY_LOGO_PNG = Assets.ASSETS_IMAGES_LOGOS_WARRANTY_WARRANTY_LOGO_PNG.getPath;
+ 
+final String ASSETS_MODELS_APP_ENZONA_CONF_JSON = Assets.ASSETS_MODELS_APP_ENZONA_CONF_JSON.getPath;
+ 
+final String ASSETS_MODELS_CARDS_JSON = Assets.ASSETS_MODELS_CARDS_JSON.getPath;
+ 
+final String ASSETS_MODELS_CASES_JSON = Assets.ASSETS_MODELS_CASES_JSON.getPath;
+ 
+final String ASSETS_MODELS_CONFIG_JSON = Assets.ASSETS_MODELS_CONFIG_JSON.getPath;
+ 
+final String ASSETS_MODELS_HISTORY_JSON = Assets.ASSETS_MODELS_HISTORY_JSON.getPath;
+ 
+final String ASSETS_MODELS_ORDERS_JSON = Assets.ASSETS_MODELS_ORDERS_JSON.getPath;
+ 
+final String ASSETS_MODELS_PRODUCTS_JSON = Assets.ASSETS_MODELS_PRODUCTS_JSON.getPath;
+ 
+final String ASSETS_MODELS_PROJECT_JSON = Assets.ASSETS_MODELS_PROJECT_JSON.getPath;
+ 
+final String ASSETS_MODELS_TOKEN_JSON = Assets.ASSETS_MODELS_TOKEN_JSON.getPath;
+ 
+final String ASSETS_MODELS_TRANSACTIONS_JSON = Assets.ASSETS_MODELS_TRANSACTIONS_JSON.getPath;
+ 
+final String ASSETS_MODELS_USERS_JSON = Assets.ASSETS_MODELS_USERS_JSON.getPath;
+ 
+final String ASSETS_RAW_ENZONA_CRT = Assets.ASSETS_RAW_ENZONA_CRT.getPath;
+ 
+final String ASSETS_RAW_ENZONA_NET_PEM = Assets.ASSETS_RAW_ENZONA_NET_PEM.getPath;
+ 
+final String ASSETS_RAW_ENZONA_NET_CA_PEM = Assets.ASSETS_RAW_ENZONA_NET_CA_PEM.getPath;
+ 
+final String ASSETS_RAW_ENZONA_NET_CERT_P12 = Assets.ASSETS_RAW_ENZONA_NET_CERT_P12.getPath;
+ 
+final String ASSETS_RAW_ENZONA_NET_CLIENT_PEM = Assets.ASSETS_RAW_ENZONA_NET_CLIENT_PEM.getPath;
+ 
+final String ASSETS_RAW_ENZONA_NET_CRT_CRT = Assets.ASSETS_RAW_ENZONA_NET_CRT_CRT.getPath;
+ 
+final String ASSETS_RAW_ENZONA_NET_CRT_PEM = Assets.ASSETS_RAW_ENZONA_NET_CRT_PEM.getPath;
+ 
+final String ASSETS_RAW_ENZONA_NET_KEY_KEY = Assets.ASSETS_RAW_ENZONA_NET_KEY_KEY.getPath;
+ 
+final String ASSETS_RAW_PKCE_SH = Assets.ASSETS_RAW_PKCE_SH.getPath;
+ 
+final String ASSETS_RAW_PRIVATEKEY_PEM = Assets.ASSETS_RAW_PRIVATEKEY_PEM.getPath;
+ 
+final String ASSETS_RAW_PUBLICCERT_PEM = Assets.ASSETS_RAW_PUBLICCERT_PEM.getPath;
+ 
+ // Clase Assets para el tratamiento de los recursos de la App 
+ class Assets {
+ 
+static String rootBundleAssets = 'assets/';
+ 
+static String assetsModels = 'assets/models/';
+ 
+static String assetsFonts = 'assets/fonts/';
+ 
+static String assetsImages = 'assets/images/';
+ 
+static String assetsRaws = 'assets/raws/';
+ final String _path;
+ Assets(this._path); factory Assets.fromPath(String path) => Assets(path);
+ String get getPath => _path;
+
+ Future<String> loadAsset(String asset) async {
+ return await rootBundle.loadString(_path);
+ }
+ Future<File> getFileFromContext() async {
+ final byteData = await rootBundle.load('$_localPath/$_path');
+ final file = File('${(await getTemporaryDirectory()).path}/$_path');
+ await file.writeAsBytes(byteData.buffer .asUint8List(byteData.offsetInBytes, byteData.lengthInBytes));
+ return file;
+ }
+ Future<File> getFileFromAssets(String path) async {
+ final byteData = await rootBundle.load(_path);
+ final file = File('${(await getTemporaryDirectory()).path}/$path');
+ await file.writeAsBytes(byteData.buffer .asUint8List(byteData.offsetInBytes, byteData.lengthInBytes));
+ return file;
+ }
+ String get _localPath {
+ final directory = Directory.current;
+ return directory.path;
+ }
+ 
+static Assets ASSETS_FONTS_PACIFICO_REGULAR_TTF = Assets.fromPath('assets/fonts/Pacifico-Regular.ttf');
+ 
+static Assets ASSETS_FONTS_ROBOTO_BOLD_TTF = Assets.fromPath('assets/fonts/Roboto-Bold.ttf');
+ 
+static Assets ASSETS_FONTS_ROBOTO_MEDIUM_TTF = Assets.fromPath('assets/fonts/Roboto-Medium.ttf');
+ 
+static Assets ASSETS_FONTS_ROBOTO_REGULAR_TTF = Assets.fromPath('assets/fonts/Roboto-Regular.ttf');
+ 
+static Assets ASSETS_FONTS_SOURCESANSPRO_REGULAR_TTF = Assets.fromPath('assets/fonts/SourceSansPro-Regular.ttf');
+ 
+static Assets ASSETS_IMAGES_BACKGROUNDS_ENZONA_BACK1_PNG = Assets.fromPath('assets/images/backgrounds/enzona/back1.png');
+ 
+static Assets ASSETS_IMAGES_BACKGROUNDS_ENZONA_BACK2_PNG = Assets.fromPath('assets/images/backgrounds/enzona/back2.png');
+ 
+static Assets ASSETS_IMAGES_BACKGROUNDS_ENZONA_BACK3_PNG = Assets.fromPath('assets/images/backgrounds/enzona/back3.png');
+ 
+static Assets ASSETS_IMAGES_BACKGROUNDS_TPV_TPV_DEFAULT_JPG = Assets.fromPath('assets/images/backgrounds/tpv/tpv_default.jpg');
+ 
+static Assets ASSETS_IMAGES_BACKGROUNDS_WARRANTY_DEFAULT_JPG = Assets.fromPath('assets/images/backgrounds/warranty/default.jpg');
+ 
+static Assets ASSETS_IMAGES_ICONS_APP_CARRITO_PNG = Assets.fromPath('assets/images/icons/app/carrito.png');
+ 
+static Assets ASSETS_IMAGES_ICONS_APP_CUENTA_PNG = Assets.fromPath('assets/images/icons/app/cuenta.png');
+ 
+static Assets ASSETS_IMAGES_ICONS_APP_EMPTYIMG_JPEG = Assets.fromPath('assets/images/icons/app/emptyimg.jpeg');
+ 
+static Assets ASSETS_IMAGES_ICONS_APP_ENZONA_EZ_DEFAULT_PNG = Assets.fromPath('assets/images/icons/app/enzona/ez_default.png');
+ 
+static Assets ASSETS_IMAGES_ICONS_APP_ESCANER_AMIGO_PNG = Assets.fromPath('assets/images/icons/app/escaner_amigo.png');
+ 
+static Assets ASSETS_IMAGES_ICONS_APP_IC_PRODUCTO_PNG = Assets.fromPath('assets/images/icons/app/ic_producto.png');
+ 
+static Assets ASSETS_IMAGES_ICONS_APP_SIN_NADA_PNG = Assets.fromPath('assets/images/icons/app/sin_nada.png');
+ 
+static Assets ASSETS_IMAGES_ICONS_APP_TPV_TPV_DEFAULT_PNG = Assets.fromPath('assets/images/icons/app/tpv/tpv_default.png');
+ 
+static Assets ASSETS_IMAGES_ICONS_APP_WARRANTY_GARANTIA_JPEG = Assets.fromPath('assets/images/icons/app/warranty/garantia.jpeg');
+ 
+static Assets ASSETS_IMAGES_ICONS_APP_WARRANTY_PEDIDOS_PNG = Assets.fromPath('assets/images/icons/app/warranty/pedidos.png');
+ 
+static Assets ASSETS_IMAGES_ICONS_APP_WARRANTY_TRANSPORTE_PNG = Assets.fromPath('assets/images/icons/app/warranty/transporte.png');
+ 
+static Assets ASSETS_IMAGES_ICONS_APP_WARRANTY_WARRANTY_BLUE_JPEG = Assets.fromPath('assets/images/icons/app/warranty/warranty-blue.jpeg');
+ 
+static Assets ASSETS_IMAGES_ICONS_APP_WARRANTY_WARRANTY_CERT_PNG = Assets.fromPath('assets/images/icons/app/warranty/warranty-cert.png');
+ 
+static Assets ASSETS_IMAGES_ICONS_APP_WARRANTY_WARRANTY_ICON_BLUE_PNG = Assets.fromPath('assets/images/icons/app/warranty/warranty-icon-blue.png');
+ 
+static Assets ASSETS_IMAGES_ICONS_APP_WARRANTY_WARRANTY_ICON_PNG = Assets.fromPath('assets/images/icons/app/warranty/warranty-icon.png');
+ 
+static Assets ASSETS_IMAGES_ICONS_APP_WARRANTY_WARRANTY_PNG_JPEG = Assets.fromPath('assets/images/icons/app/warranty/warranty-png.jpeg');
+ 
+static Assets ASSETS_IMAGES_LOGOS_ENZONA_EZ_LOGO_PNG = Assets.fromPath('assets/images/logos/enzona/ez_logo.png');
+ 
+static Assets ASSETS_IMAGES_LOGOS_LOGO_PNG = Assets.fromPath('assets/images/logos/logo.png');
+ 
+static Assets ASSETS_IMAGES_LOGOS_TPV_TPV_LOGO_PNG = Assets.fromPath('assets/images/logos/tpv/tpv_logo.png');
+ 
+static Assets ASSETS_IMAGES_LOGOS_WARRANTY_WARRANTY_LOGO_PNG = Assets.fromPath('assets/images/logos/warranty/warranty_logo.png');
+ 
+static Assets ASSETS_MODELS_APP_ENZONA_CONF_JSON = Assets.fromPath('assets/models/app_enzona_conf.json');
+ 
+static Assets ASSETS_MODELS_CARDS_JSON = Assets.fromPath('assets/models/cards.json');
+ 
+static Assets ASSETS_MODELS_CASES_JSON = Assets.fromPath('assets/models/cases.json');
+ 
+static Assets ASSETS_MODELS_CONFIG_JSON = Assets.fromPath('assets/models/config.json');
+ 
+static Assets ASSETS_MODELS_HISTORY_JSON = Assets.fromPath('assets/models/history.json');
+ 
+static Assets ASSETS_MODELS_ORDERS_JSON = Assets.fromPath('assets/models/orders.json');
+ 
+static Assets ASSETS_MODELS_PRODUCTS_JSON = Assets.fromPath('assets/models/products.json');
+ 
+static Assets ASSETS_MODELS_PROJECT_JSON = Assets.fromPath('assets/models/project.json');
+ 
+static Assets ASSETS_MODELS_TOKEN_JSON = Assets.fromPath('assets/models/token.json');
+ 
+static Assets ASSETS_MODELS_TRANSACTIONS_JSON = Assets.fromPath('assets/models/transactions.json');
+ 
+static Assets ASSETS_MODELS_USERS_JSON = Assets.fromPath('assets/models/users.json');
+ 
+static Assets ASSETS_RAW_ENZONA_CRT = Assets.fromPath('assets/raw/enzona.crt');
+ 
+static Assets ASSETS_RAW_ENZONA_NET_PEM = Assets.fromPath('assets/raw/enzona_net.pem');
+ 
+static Assets ASSETS_RAW_ENZONA_NET_CA_PEM = Assets.fromPath('assets/raw/enzona_net_ca.pem');
+ 
+static Assets ASSETS_RAW_ENZONA_NET_CERT_P12 = Assets.fromPath('assets/raw/enzona_net_cert.p12');
+ 
+static Assets ASSETS_RAW_ENZONA_NET_CLIENT_PEM = Assets.fromPath('assets/raw/enzona_net_client.pem');
+ 
+static Assets ASSETS_RAW_ENZONA_NET_CRT_CRT = Assets.fromPath('assets/raw/enzona_net_crt.crt');
+ 
+static Assets ASSETS_RAW_ENZONA_NET_CRT_PEM = Assets.fromPath('assets/raw/enzona_net_crt.pem');
+ 
+static Assets ASSETS_RAW_ENZONA_NET_KEY_KEY = Assets.fromPath('assets/raw/enzona_net_key.key');
+ 
+static Assets ASSETS_RAW_PKCE_SH = Assets.fromPath('assets/raw/pkce.sh');
+ 
+static Assets ASSETS_RAW_PRIVATEKEY_PEM = Assets.fromPath('assets/raw/privatekey.pem');
+ 
+static Assets ASSETS_RAW_PUBLICCERT_PEM = Assets.fromPath('assets/raw/publiccert.pem');
+ 
+ }

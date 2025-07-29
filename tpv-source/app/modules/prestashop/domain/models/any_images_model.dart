@@ -1,0 +1,228 @@
+// ignore_for_file: overridden_fields
+
+import 'dart:async';
+import 'dart:convert';
+
+import '/app/core/interfaces/entity_model.dart';
+import '/app/core/services/logger_service.dart';
+import '/app/modules/product/domain/entities/any_image.dart';
+
+AnyImageList anyImageListModelFromJson(String str) =>
+    AnyImageList.fromJson(json.decode(str));
+
+AnyImageModel anyImageModelFromJson(String str) =>
+    AnyImageModel.fromJson(json.decode(str));
+
+String anyImageModelToJson(AnyImageModel data) => json.encode(data.toJson());
+
+class AnyImageList<T extends AnyImageModel> implements EntityModelList<T> {
+  final List<T> anyImages;
+
+  AnyImageList({
+    required this.anyImages,
+  });
+
+  factory AnyImageList.fromJson(Map<String, dynamic> json) => AnyImageList(
+        anyImages: json.containsKey("images")
+            ? List<T>.from(json["images"].map((x) => AnyImageModel.fromJson(x)))
+            : [],
+      );
+
+  factory AnyImageList.fromStringJson(String strJson) => AnyImageList(
+        anyImages: List<T>.from(json
+            .decode(strJson)["images"]
+            .map((x) => AnyImageModel.fromJson(x))),
+      );
+
+  @override
+  int get getTotal => getList().length;
+
+  @override
+  EntityModelList<T> add(T element) => fromList([element]);
+
+  @override
+  EntityModelList<T> fromJson(Map<String, dynamic> json) {
+    return AnyImageList.fromJson(json);
+  }
+
+  @override
+  EntityModelList<T> fromList(List<T> list) {
+    for (var element in list) {
+      if (!anyImages.contains(element)) anyImages.add(element);
+    }
+    return this;
+  }
+
+  @override
+  EntityModelList<T> fromStringJson(String strJson) {
+    return AnyImageList.fromStringJson(strJson);
+  }
+
+  @override
+  List<T> getList() => anyImages;
+
+  Map<String, dynamic> toJson() => {
+        "images": List<dynamic>.from(anyImages.map((x) => x.toJson())),
+      };
+}
+
+class AnyImageModel extends AnyImage implements EntityModel {
+  @override
+  String id;
+  @override
+  String imageDescription;
+  @override
+  String imageURL;
+  @override
+  String title;
+  @override
+  String alt;
+
+  @override
+  Map<String, ColumnMetaModel>? metaModel;
+
+  AnyImageModel({
+    this.id = "",
+    this.imageDescription = "Sin imagen",
+    this.imageURL = "Sin url",
+    this.alt = "Desconocido",
+    this.title = "Desconocido",
+  }) : super(
+          id: id,
+          alt: alt,
+          imageDescription: imageDescription,
+          imageURL: imageURL,
+          title: title,
+        );
+
+  factory AnyImageModel.fromJson(Map<String, dynamic> json) => AnyImageModel(
+        id: json["id"],
+        alt: json["alt"],
+        imageDescription: json["imageDescription"],
+        imageURL: json["imageURL"],
+        title: json["title"],
+      );
+
+  @override
+  Map<String, ColumnMetaModel>? get getMetaModel => getColumnMetaModel();
+
+  @override
+  set setMetaModel(Map<String, ColumnMetaModel> newMetaModel) {
+    metaModel = newMetaModel;
+  }
+
+  @override
+  EntityModelList createModelListFrom(dynamic data) {
+    try {
+      if (data is Map) {
+        return AnyImageList.fromJson(data as Map<String, dynamic>);
+      }
+      if (data is String) {
+        return AnyImageList.fromStringJson(data);
+      }
+    } on Exception {
+      log("Error al mapear el parámetro 'data'. Debe ser de tipo'Map<String, dynamic>' o String");
+    }
+    return AnyImageList.fromJson({});
+  }
+
+  @override
+  Map<String, ColumnMetaModel> getColumnMetaModel() {
+    //Map<String, String> colNames = getColumnNames();
+    metaModel = metaModel ??
+        {
+          //TODO Declare here all ColumnMetaModel. you can use class implementation of class "DefaultColumnMetaModel".
+        };
+    int index = 0;
+    metaModel!.forEach((key, value) {
+      value.setColumnIndex(index++);
+    });
+    return metaModel!;
+  }
+
+  @override
+  Map<String, String> getColumnNames() {
+    return {
+      "id": "Id AnyImageo",
+      "idOrder": "Id de Orden",
+      "name": "Nombre",
+      "description": "Descripción",
+      "images": "Imágenes",
+    };
+  }
+
+  @override
+  List<String> getColumnNamesList() {
+    return getColumnNames().values.toList();
+  }
+
+  StreamController<EntityModel> getController({
+    void Function()? onListen,
+    void Function()? onPause,
+    void Function()? onResume,
+    FutureOr<void> Function()? onCancel,
+  }) {
+    return EntityModel.getController(
+      entity: this,
+      onListen: onListen,
+      onPause: onPause,
+      onResume: onResume,
+      onCancel: onCancel,
+    );
+  }
+
+  @override
+  Map<K1, V1> getMeta<K1, V1>(String searchKey, dynamic searchValue) {
+    final Map<K1, V1> result = {};
+    getColumnMetaModel().map<K1, V1>((key, value) {
+      MapEntry<K1, V1> el = MapEntry(value.getDataIndex() as K1, value as V1);
+      if (value[searchKey] == searchValue) {
+        result.putIfAbsent(value.getDataIndex() as K1, () {
+          return value as V1;
+        });
+      }
+      return el;
+    });
+    return result;
+  }
+
+  @override
+  Map<String, String> getVisibleColumnNames() {
+    Map<String, String> names = {};
+    getMeta<String, ColumnMetaModel>("visible", true)
+        .map<String, String>((key, value) {
+      names.putIfAbsent(key, () => value.getColumnName());
+      return MapEntry(key, value.getColumnName());
+    });
+    return names;
+    // throw UnimplementedError();
+  }
+
+  @override
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "alt": alt,
+        "imageDescription": imageDescription,
+        "imageURL": imageURL,
+        "title": title,
+      };
+
+  @override
+  Map<String, ColumnMetaModel> updateColumnMetaModel(
+      String keySearch, dynamic valueSearch, dynamic newValue) {
+    Map<String, ColumnMetaModel> tmp = getColumnMetaModel();
+    getMeta<String, ColumnMetaModel>(keySearch, valueSearch)
+        .map<String, ColumnMetaModel>((key, value) {
+      tmp.putIfAbsent(key, () => value);
+      return MapEntry(key, value);
+    });
+    return metaModel = tmp;
+  }
+
+  static T? getValueFrom<T>(
+      String key, Map<dynamic, dynamic> json, T? defaultValue,
+      {JsonReader<T?>? reader}) {
+    return EntityModel.getValueFromJson<T?>(key, json, defaultValue,
+        reader: reader);
+  }
+}

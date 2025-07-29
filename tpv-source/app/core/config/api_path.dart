@@ -1,0 +1,21 @@
+abstract class ApiPath {
+  static const enzonaHost = "enzona.net";
+  static const identiryHost = 'identity.$enzonaHost';
+  static const authorizationEndpoint = '$identiryHost/oauth2/authorize';
+  static const tokenEndpoint = '$identiryHost/oauth2/token';
+  static const logoutEndpoint = '$identiryHost/oidc/logout';
+  static const apiEndpoint = 'api.$enzonaHost/cards/v1.0.0';
+
+  static const nomenclatorContext = 'nomenclator/v1.0.0/';
+
+  static String redirectUri(String path) {
+    final currentUri = Uri.base;
+    final redirectUri = Uri(
+      host: currentUri.host,
+      scheme: currentUri.scheme,
+      port: currentUri.port,
+      path: path,
+    );
+    return redirectUri.toString();
+  }
+}
